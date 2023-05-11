@@ -9,7 +9,7 @@ export default class GenreController {
       const {error } = createMovieGenreValidator.validate(req.body)
       if(error) throw error
 
-      const isUserAvailable = await User.findById(req.body.creator)
+      const isUserAvailable = await User.findById(req.body.producer)
       if(!isUserAvailable) throw new BadUserRequestError(`User with this id: ${req.body.creator} does not exist`)
 
       const newGenre = await MovieGenre.create(req.body)
@@ -92,7 +92,7 @@ export default class GenreController {
     const user = await User.findById(id)
     if(!user) throw new NotFoundError(`The user with this id: ${id}, does not exist`)
 
-    const genres =  await MovieGenre.find({ creatorId: id }).populate("creator")
+    const genres =  await MovieGenre.find({ producerId: id }).populate("producer")
 
     return res.status(200).json({
       message: genres.length < 1 ? "No genres found" : "genres found successfully",

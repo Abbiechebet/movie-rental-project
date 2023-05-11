@@ -2,28 +2,26 @@ import { Schema, model, Types, Query} from "mongoose"
 
 
 const MovieSchema = new Schema({
-  creator: {
+  producer: {
     type: Types.ObjectId,
     ref: "User",
     required: true,
   },
-  creatorId: String,
-  status: {
-    type:String,
-    enum: ['pending', 'in-progress', 'completed'],
-    default: 'pending',
-  },
+  producerId: String,
   isDeleted: {
     type: Boolean,
     default: false,
   },
-  genre: {
+  name: {
     type: String,
     required: true
   },
-  startDate: Date,
-  endDate: Date
-},{
+  description: {
+    type: String,
+    required: true
+  },
+},
+{
   timestamps: true
 })
 

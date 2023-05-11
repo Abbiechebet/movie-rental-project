@@ -1,17 +1,18 @@
 import {Router} from "express"
 import GenreController from "../controller/movies.controller.js"
 import { tryCatchHandler} from "../utils/tryCatch.handler.js"
+import {userAuthMiddleWare} from "../middlewares/auth.middleware.js"
 
 const router = Router()
 
-router.post("/create",  tryCatchHandler( GenreController.createGenre))
+router.post("/create", userAuthMiddleWare, tryCatchHandler( GenreController.createGenre))
 
-router.put("/update",  tryCatchHandler( GenreController.updateOneGenre))
+router.put("/update", userAuthMiddleWare, tryCatchHandler( GenreController.updateOneGenre))
 
-router.get("/one",  tryCatchHandler( GenreController.getOneGenre))
+router.get("/one", userAuthMiddleWare, tryCatchHandler( GenreController.getOneGenre))
 
-router.get("/all_genres", tryCatchHandler( GenreController.findAll))
+router.get("/all_genres", userAuthMiddleWare, tryCatchHandler( GenreController.findAll))
 
-router.delete("/delete",  tryCatchHandler( GenreController.deleteOneGenre))
+router.delete("/delete", userAuthMiddleWare, tryCatchHandler( GenreController.deleteOneGenre))
 
 export {router}

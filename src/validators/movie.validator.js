@@ -4,16 +4,14 @@ import JoiMongoId from "joi-objectid"
 Joi.objectId = JoiMongoId(Joi)
 
 export const createMovieGenreValidator = Joi.object({
-  creator: Joi.objectId().required(),
-  creatorId: Joi.objectId().required(),
-  title: Joi.string().required(),
-  startDate: Joi.string().required(),
-  endDate: Joi.string().required(),
+  producer:Joi.string().required(),
+  producerId: Joi.string().required(),
+  name: Joi.string().required(),
+  description: Joi.string().required(),
 }).strict()
 
 
 export const updateMovieGenreValidator = Joi.object({
-  genre: Joi.string().optional(),
-  startDate: Joi.string().optional(),
-  endDate: Joi.string().optional(),
+  name: Joi.string().optional(),
+  description: Joi.string().optional(),
 }).strict()

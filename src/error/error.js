@@ -14,6 +14,13 @@ export class NotFoundError extends Error {
     }
   }
   
+  export class UnAuthorizedError extends Error {
+    constructor(message){
+      super(message)
+      this.status = 401;
+      this.errorType = "UnAuthorizedError";
+    }
+  }
   // class Error {
   //   constructor(message) {
   //     this.message = message
